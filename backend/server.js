@@ -1,11 +1,27 @@
 require("dotenv").config();
+
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
+const Character = require("./Model/Database");
 
-app.listen(process.env.PORT, () => {
-  console.log(process.env.PORT);
-});
+mongoose
+  .connect(process.env.uri, {
+    usenewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(
+    app.listen(process.env.PORT, () => {
+      console.log(process.env.PORT);
+    })
+  )
+  .catch((error) => console.log(error));
 app.get("/", (req, res) => {
-  res.json({ mssg: "Hello!" });
+  Character.find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
-
