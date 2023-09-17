@@ -22,9 +22,9 @@ app.use(express.json());
 app.get("/", async (req, res) => {
   try {
     const characters = await Character.find();
-    res.send(characters);
+    res.status(200).json(characters);
   } catch (err) {
-    console.log(err);
+    res.status(400).json({error: err});
   }
 });
 app.post("/", async (req, res) => {
