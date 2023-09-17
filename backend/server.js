@@ -16,12 +16,23 @@ mongoose
     })
   )
   .catch((error) => console.log(error));
-app.get("/", (req, res) => {
-  Character.find()
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+
+app.use(express.json());
+
+app.get("/", async (req, res) => {
+  try {
+    const characters = await Character.find();
+    res.send(characters);
+  } catch (err) {
+    console.log(err);
+  }
+});
+app.post("/", async (req, res) => {
+  console.log(req.body);
+  try {
+    const character = await Character.create(req.body);
+    res.status(200).json(character);
+  } catch (err) {
+    res.status(400).json({error: err});
+  }
 });
