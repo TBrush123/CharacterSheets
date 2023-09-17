@@ -24,15 +24,25 @@ app.get("/", async (req, res) => {
     const characters = await Character.find();
     res.status(200).json(characters);
   } catch (err) {
-    res.status(400).json({error: err});
+    res.status(400).json({ error: err });
   }
 });
 app.post("/", async (req, res) => {
-  console.log(req.body);
   try {
     const character = await Character.create(req.body);
     res.status(200).json(character);
   } catch (err) {
-    res.status(400).json({error: err});
+    res.status(400).json({ error: err });
+  }
+});
+app.get("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const character = await Character.findById(id);
+    if (character) {
+      res.status(200).json(character);
+    }
+  } catch (err) {
+    res.status(404).json(err);
   }
 });
