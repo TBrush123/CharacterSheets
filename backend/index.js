@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const characterRoutes = require("./routes/characters");
+const generatorRoutes = require("./routes/generator")
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,6 +11,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+app.use("/api/characters", characterRoutes);
+app.use("/api/generator", generatorRoutes);
 
 mongoose
     .connect(process.env.MONGO_URI)

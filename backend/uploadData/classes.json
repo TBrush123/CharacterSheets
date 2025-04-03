@@ -1,0 +1,14 @@
+[
+  { "name": "Barbarian", "hit_die": 12, "primary_ability": "Strength" },
+  { "name": "Bard", "hit_die": 8, "primary_ability": "Charisma" },
+  { "name": "Cleric", "hit_die": 8, "primary_ability": "Wisdom" },
+  { "name": "Druid", "hit_die": 8, "primary_ability": "Wisdom" },
+  { "name": "Fighter", "hit_die": 10, "primary_ability": "Strength or Dexterity" },
+  { "name": "Monk", "hit_die": 8, "primary_ability": "Dexterity & Wisdom" },
+  { "name": "Paladin", "hit_die": 10, "primary_ability": "Strength & Charisma" },
+  { "name": "Ranger", "hit_die": 10, "primary_ability": "Dexterity & Wisdom" },
+  { "name": "Rogue", "hit_die": 8, "primary_ability": "Dexterity" },
+  { "name": "Sorcerer", "hit_die": 6, "primary_ability": "Charisma" },
+  { "name": "Warlock", "hit_die": 8, "primary_ability": "Charisma" },
+  { "name": "Wizard", "hit_die": 6, "primary_ability": "Intelligence" }
+]
