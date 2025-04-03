@@ -1,5 +1,6 @@
 const express = require("express");
 const Character = require("../models/CharacterTest");
+const missingInfo = require("../functions/missingInfo");
 const router = express.Router();
 
 // Get all characters
@@ -15,11 +16,15 @@ router.get("/", async (req, res) => {
 // Create a new character
 router.post("/", async (req, res) => {
   try {
-    const newCharacter = new Character(req.body);
+    if (req.body.class === "") {
+      req.body.class = await missingInfo.pickClass();
+    }
+    const newCharacter = new Character(req.body); 
     await newCharacter.save();
     res.status(201).json(newCharacter);
   } catch (error) {
     res.status(400).json({ message: "Error creating character" });
+    console.log(error);
   }
 });
 
